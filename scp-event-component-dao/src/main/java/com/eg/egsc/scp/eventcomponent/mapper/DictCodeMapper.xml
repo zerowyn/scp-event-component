@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eg.egsc.scp.eventcomponent.mapper.DictCodeMapper">
+  <resultMap id="BaseResultMap" type="com.eg.egsc.scp.eventcomponent.mapper.entity.DictCode">
+    <result column="item_type" jdbcType="VARCHAR" property="itemType" />
+    <result column="enable_flag" jdbcType="SMALLINT" property="enableFlag" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="sort" jdbcType="SMALLINT" property="sort" />
+    <result column="item_value" jdbcType="VARCHAR" property="itemValue" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="court_uuid" jdbcType="VARCHAR" property="courtUuid" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    item_type, enable_flag, description, item_code, parent_code, item_name, sort, item_value, 
+    uuid, court_uuid, update_time, create_user, update_user, create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.eg.egsc.scp.eventcomponent.mapper.entity.DictCodeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ec.dict_code
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.eg.egsc.scp.eventcomponent.mapper.entity.DictCodeExample">
+    delete from ec.dict_code
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eg.egsc.scp.eventcomponent.mapper.entity.DictCode">
+    insert into ec.dict_code (item_type, enable_flag, description, 
+      item_code, parent_code, item_name, 
+      sort, item_value, uuid, 
+      court_uuid, update_time, create_user, 
+      update_user, create_time)
+    values (#{itemType,jdbcType=VARCHAR}, #{enableFlag,jdbcType=SMALLINT}, #{description,jdbcType=VARCHAR}, 
+      #{itemCode,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=SMALLINT}, #{itemValue,jdbcType=VARCHAR}, #{uuid,jdbcType=VARCHAR}, 
+      #{courtUuid,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eg.egsc.scp.eventcomponent.mapper.entity.DictCode">
+    insert into ec.dict_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemType != null">
+        item_type,
+      </if>
+      <if test="enableFlag != null">
+        enable_flag,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="itemCode != null">
+        item_code,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="itemValue != null">
+        item_value,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="courtUuid != null">
+        court_uuid,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemType != null">
+        #{itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="enableFlag != null">
+        #{enableFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="itemValue != null">
+        #{itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="courtUuid != null">
+        #{courtUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eg.egsc.scp.eventcomponent.mapper.entity.DictCodeExample" resultType="java.lang.Long">
+    select count(*) from ec.dict_code
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ec.dict_code
+    <set>
+      <if test="record.itemType != null">
+        item_type = #{record.itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enableFlag != null">
+        enable_flag = #{record.enableFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemCode != null">
+        item_code = #{record.itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentCode != null">
+        parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemName != null">
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=SMALLINT},
+      </if>
+      <if test="record.itemValue != null">
+        item_value = #{record.itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uuid != null">
+        uuid = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courtUuid != null">
+        court_uuid = #{record.courtUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ec.dict_code
+    set item_type = #{record.itemType,jdbcType=VARCHAR},
+      enable_flag = #{record.enableFlag,jdbcType=SMALLINT},
+      description = #{record.description,jdbcType=VARCHAR},
+      item_code = #{record.itemCode,jdbcType=VARCHAR},
+      parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      item_name = #{record.itemName,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=SMALLINT},
+      item_value = #{record.itemValue,jdbcType=VARCHAR},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      court_uuid = #{record.courtUuid,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
